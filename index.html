@@ -49,7 +49,7 @@
     <div class="site" id="site3"><iframe src="https://play.pixels.xyz/pixels/share/107"></iframe></div>
     <div class="site" id="site4"><iframe src="https://play.pixels.xyz/pixels/share/107"></iframe></div>
   </div>
-  <button onclick="loadRandomPixels()">Cargar Pixel Aleatorio</button>
+  <button onclick="loadRandomPixels()">Cargar land Aleatoria</button>
 
   <script>
     function loadRandomPixels() {
@@ -68,7 +68,7 @@
 
         const randomNumberElement = document.createElement('div');
         randomNumberElement.classList.add('random-number');
-        randomNumberElement.textContent = `Número Aleatorio: ${randomNum}`;
+        randomNumberElement.textContent = `Número land Aleatoria: ${randomNum}`;
         document.getElementById(`site${index + 1}`).appendChild(randomNumberElement);
       });
     }
