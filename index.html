@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dividir Página en 4 Sitios Web con Botón Aleatorio</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    height: 100%;
+  }
+
+  .site {
+    border: 1px solid #ccc;
+    overflow: hidden;
+    position: relative;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .random-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+    border-radius: 5px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="site" id="site1"><iframe src="https://play.pixels.xyz/pixels/share/107"></iframe></div>
+    <div class="site" id="site2"><iframe src="https://play.pixels.xyz/pixels/share/107"></iframe></div>
+    <div class="site" id="site3"><iframe src="https://play.pixels.xyz/pixels/share/107"></iframe></div>
+    <div class="site" id="site4"><iframe src="https://play.pixels.xyz/pixels/share/107"></iframe></div>
+  </div>
+  <button onclick="loadRandomPixels()">Cargar Pixel Aleatorio</button>
+
+  <script>
+    function loadRandomPixels() {
+      const uniqueNumbers = [];
+      const iframes = document.querySelectorAll('iframe');
+      
+      iframes.forEach((iframe, index) => {
+        let randomNum;
+        do {
+          randomNum = Math.floor(Math.random() * 5001);
+        } while (uniqueNumbers.includes(randomNum));
+        
+        uniqueNumbers.push(randomNum);
+        const src = `https://play.pixels.xyz/pixels/share/${randomNum}`;
+        iframe.src = src;
+
+        const randomNumberElement = document.createElement('div');
+        randomNumberElement.classList.add('random-number');
+        randomNumberElement.textContent = `Número Aleatorio: ${randomNum}`;
+        document.getElementById(`site${index + 1}`).appendChild(randomNumberElement);
+      });
+    }
+  </script>
+</body>
+</html>
